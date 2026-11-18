@@ -1,0 +1,11 @@
+# 编译结果与 IDE 缓存
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# 游戏程序集与发行包
+*.dll
+*.pdb
+*.zip

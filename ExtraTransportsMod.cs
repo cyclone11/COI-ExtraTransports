@@ -19,7 +19,7 @@ namespace ExtraTransports
 
         public override void MigrateJsonConfig(VersionSlim savedVersion, Dict<string, object> savedValues)
         {
-            // Nothing to migrate yet
+            // 模组当前没有用户配置，也没有需要迁移的配置数据。
         }
     }
 }

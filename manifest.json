@@ -1,0 +1,21 @@
+{
+  "id": "ExtraTransports",
+  "version": "0.0.2",
+  "display_name": "额外运输设施",
+  "description_short": "添加四级、五级平面与散料输送带，以及五级管道，通过研究解锁。",
+  "description_long": "为《工业巨头》添加四级和五级输送带以及五级管道，包含两项研究。支持简体中文和英文，采用游戏原有材质。此源码修订面向更新 4.3（0.8.8），仍需编译和实机验证。",
+  "authors": [
+    "Indra Kusuma (Luminiel / not-muted)"
+  ],
+  "min_game_version": "0.8.8",
+  "primary_dlls": [
+    "ExtraTransports.dll"
+  ],
+  "links": [
+    "https://github.com/not-muted/coi-extratransports"
+  ],
+  "non_locking_dll_load": true,
+  "can_add_to_saved_game": true,
+  "can_remove_from_saved_game": false,
+  "primary_mod_class_name": "ExtraTransportsMod"
+}

@@ -1,46 +1,43 @@
-﻿using Mafi;
+using Mafi;
 using Mafi.Base.Prototypes.Research;
-using ModIds = ExtraTransports.TransportsId;
-using BaseIds = Mafi.Base.Ids;
 using Mafi.Core.Mods;
 using Mafi.Core.Research;
-using MafiBuilder = Mafi.Core.Research.ResearchNodeProtoBuilderExtensions;
+using BaseIds = Mafi.Base.Ids;
+using ModIds = ExtraTransports.TransportsId;
 
 namespace ExtraTransports.Data
 {
-    internal class TransportsResearchData : IModData
+    internal sealed class TransportsResearchData : IModData
     {
         public void RegisterData(ProtoRegistrator registrator)
         {
-            TransportsResearchData.registerNewTransports(registrator);
-        }
-
-        private static void registerNewTransports(ProtoRegistrator registrator)
-        {
-
-            // Tier 4 Converyor Registration
-
-            var t4c = registrator.ResearchNodeProtoBuilder
-                .Start("Conveyor Belts IV", ModIds.Research.ConveyorBeltsT4, ResearchCosts.ConveyorBeltsT3 * 2, "title of a research node in the research tree")
-                .Description("Conveyor belts with an increase throughput.", "description of a research node in the research tree")
+            // 英文原文由 builder 注册，游戏从 Translations 目录读取玩家语言。
+            var tier4 = registrator.ResearchNodeProtoBuilder
+                .Start("Conveyor Belts IV", ModIds.Research.ConveyorBeltsT4,
+                    ResearchCosts.ConveyorBeltsT3 * 2, "Title of the tier IV conveyor research.")
+                .Description("Conveyor belts with increased throughput.",
+                    "Unlocks tier IV flat and loose-material conveyors.")
                 .SetGridPosition(new Vector2i(148, 14))
-                .AddParents(new ResearchNodeProto[] { registrator.PrototypesDb.GetOrThrow<ResearchNodeProto>(BaseIds.Research.ResearchLab4) });
-            MafiBuilder.AddTransportToUnlock(t4c, ModIds.Transports.LooseMaterialConveyorT4);
-            MafiBuilder.AddTransportToUnlock(t4c, ModIds.Transports.FlatConveyorT4);
-            ResearchNodeProto t4node = t4c.BuildAndAdd();
+                .AddParents(new ResearchNodeProto[]
+                {
+                    registrator.PrototypesDb.GetOrThrow<ResearchNodeProto>(BaseIds.Research.ResearchLab4)
+                });
+            tier4.AddTransportToUnlock(ModIds.Transports.LooseMaterialConveyorT4);
+            tier4.AddTransportToUnlock(ModIds.Transports.FlatConveyorT4);
+            ResearchNodeProto tier4Node = tier4.BuildAndAdd();
 
-            // Tier 5 Conveyor and Pipe Registration
-
-            var t5cp = registrator.ResearchNodeProtoBuilder
-                .Start("Conveyor and Pipes V", ModIds.Research.ConveyorBeltsT5, ResearchCosts.ConveyorBeltsT3 * 3, "title of a research node in the research tree")
-                .Description("Increase throughput of conveyor belts and pipes.", "description of a research node in the research tree")
+            // 五级管道与输送带共用一项研究，沿用已发布的研究 ID。
+            var tier5 = registrator.ResearchNodeProtoBuilder
+                .Start("Conveyors and Pipes V", ModIds.Research.ConveyorBeltsT5,
+                    ResearchCosts.ConveyorBeltsT3 * 3, "Title of the tier V transport research.")
+                .Description("Increased throughput for conveyor belts and pipes.",
+                    "Unlocks tier V flat conveyors, loose-material conveyors, and pipes.")
                 .SetGridPosition(new Vector2i(168, 14))
-                .AddParents(new ResearchNodeProto[] { t4node });
-            MafiBuilder.AddTransportToUnlock(t5cp, ModIds.Transports.LooseMaterialConveyorT5);
-            MafiBuilder.AddTransportToUnlock(t5cp, ModIds.Transports.FlatConveyorT5);
-            MafiBuilder.AddTransportToUnlock(t5cp, ModIds.Transports.FluidPipeT5);
-            t5cp.BuildAndAdd();
-
+                .AddParents(new ResearchNodeProto[] { tier4Node });
+            tier5.AddTransportToUnlock(ModIds.Transports.LooseMaterialConveyorT5);
+            tier5.AddTransportToUnlock(ModIds.Transports.FlatConveyorT5);
+            tier5.AddTransportToUnlock(ModIds.Transports.FluidPipeT5);
+            tier5.BuildAndAdd();
         }
     }
 }

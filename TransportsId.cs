@@ -3,6 +3,8 @@ using Mafi.Core.Research;
 
 namespace ExtraTransports
 {
+    // 已发布设施的 ID 会写入存档，0.8.8 按官方兼容规则继续保留旧名称。
+    // 以后新增的原型应使用 ExtraTransports. 前缀。
     public static class TransportsId
     {
 
@@ -39,7 +41,7 @@ namespace ExtraTransports
             public static readonly ResearchNodeProto.ID ConveyorBeltsT5 =
                 new ResearchNodeProto.ID("ConveyorBeltsT5");
 
-            // Tier 5 Pipe Research
+            // 保留公开的旧 ID，当前五级管道随 ConveyorBeltsT5 一起解锁。
 
             public static readonly ResearchNodeProto.ID PipeT5 =
                 new ResearchNodeProto.ID("PipeT5");
