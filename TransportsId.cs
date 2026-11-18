@@ -41,7 +41,7 @@ namespace ExtraTransports
             public static readonly ResearchNodeProto.ID ConveyorBeltsT5 =
                 new ResearchNodeProto.ID("ConveyorBeltsT5");
 
-            // 保留公开的旧 ID，当前五级管道随 ConveyorBeltsT5 一起解锁。
+            // 保留公开的旧 ID。五级管道由 ConveyorBeltsT4 研究解锁。
 
             public static readonly ResearchNodeProto.ID PipeT5 =
                 new ResearchNodeProto.ID("PipeT5");

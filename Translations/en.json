@@ -1,58 +1,58 @@
 [
   [
-    "FlatConveyorT4__name",
+    "ExtraTransports.FlatConveyorT4__name",
     "Flat Conveyor IV"
   ],
   [
-    "FlatConveyorT4__desc",
+    "ExtraTransports.FlatConveyorT4__desc",
     "Conveys unit products or finished goods. Can carry multiple product types simultaneously."
   ],
   [
-    "FlatConveyorT5__name",
+    "ExtraTransports.FlatConveyorT5__name",
     "Flat Conveyor V"
   ],
   [
-    "FlatConveyorT5__desc",
+    "ExtraTransports.FlatConveyorT5__desc",
     "Conveys unit products or finished goods. Can carry multiple product types simultaneously."
   ],
   [
-    "LooseMaterialConveyorT4__name",
+    "ExtraTransports.LooseMaterialConveyorT4__name",
     "Loose Conveyor IV"
   ],
   [
-    "LooseMaterialConveyorT4__desc",
+    "ExtraTransports.LooseMaterialConveyorT4__desc",
     "Transports loose materials. Can carry multiple product types simultaneously."
   ],
   [
-    "LooseMaterialConveyorT5__name",
+    "ExtraTransports.LooseMaterialConveyorT5__name",
     "Loose Conveyor V"
   ],
   [
-    "LooseMaterialConveyorT5__desc",
+    "ExtraTransports.LooseMaterialConveyorT5__desc",
     "Transports loose materials. Can carry multiple product types simultaneously."
   ],
   [
-    "FluidPipeT5__name",
+    "ExtraTransports.FluidPipeT5__name",
     "Pipe V"
   ],
   [
-    "FluidPipeT5__desc",
+    "ExtraTransports.FluidPipeT5__desc",
     "Transports liquids and gases. Each pipe segment can transport only one product type at a time."
   ],
   [
-    "ConveyorBeltsT4__name",
-    "Conveyor Belts IV"
+    "ExtraTransports.ConveyorBeltsT4__name",
+    "Conveyor Belts IV and Pipes V"
   ],
   [
-    "ConveyorBeltsT4__desc",
-    "Conveyor belts with increased throughput."
+    "ExtraTransports.ConveyorBeltsT4__desc",
+    "Unlocks tier IV flat and loose-material conveyors and tier V pipes."
   ],
   [
-    "ConveyorBeltsT5__name",
-    "Conveyors and Pipes V"
+    "ExtraTransports.ConveyorBeltsT5__name",
+    "Conveyor Belts V"
   ],
   [
-    "ConveyorBeltsT5__desc",
-    "Increased throughput for conveyor belts and pipes."
+    "ExtraTransports.ConveyorBeltsT5__desc",
+    "Unlocks tier V flat and loose-material conveyors."
   ]
 ]

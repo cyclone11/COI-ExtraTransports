@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>ExtraTransports</AssemblyName>
     <RootNamespace>ExtraTransports</RootNamespace>
-    <Version>0.0.2</Version>
+    <Version>0.0.6</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <!-- 支持直接指定 Managed 目录，也兼容官方示例使用的 COI_ROOT。 -->
     <CaptainIndustryManagedPath Condition="'$(CaptainIndustryManagedPath)' == '' and '$(CAPTAIN_INDUSTRY_MANAGED_PATH)' != ''">$(CAPTAIN_INDUSTRY_MANAGED_PATH)</CaptainIndustryManagedPath>
@@ -16,6 +16,10 @@
     <OutputPath>bin\$(Configuration)\ExtraTransports\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Icons\*.png;Assets\Textures\*.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
@@ -35,10 +39,26 @@
       <HintPath>$(CaptainIndustryManagedPath)\Mafi.Core.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Mafi.Unity">
+      <HintPath>$(CaptainIndustryManagedPath)\Mafi.Unity.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(CaptainIndustryManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(CaptainIndustryManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>$(CaptainIndustryManagedPath)\netstandard.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="manifest.json;LICENSE;README.md" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="manifest.json;LICENSE;README.md;thumbnail.png" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Translations\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

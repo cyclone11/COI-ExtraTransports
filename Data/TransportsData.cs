@@ -33,8 +33,7 @@ namespace ExtraTransports.Data
 
             var transport = new TransportProto(
                 TransportsId.Transports.FlatConveyorT4,
-                Proto.CreateStrFromLocalized(TransportsId.Transports.FlatConveyorT4,
-                    ExtraTransportsTexts.FlatConveyorT4Name, ExtraTransportsTexts.FlatConveyorT4Description),
+                new Proto.Str(ExtraTransportsTexts.FlatConveyorT4Name, ExtraTransportsTexts.FlatConveyorT4Description),
                 source.SurfaceRelativeHeight,
                 3.Quantity(),
                 0.58.Tiles(),
@@ -52,7 +51,7 @@ namespace ExtraTransports.Data
                 source.IsBuildable,
                 TransportsCost.FlatConveyorT4.MapToEntityCosts(registrator),
                 source.ConstructionDurationPerProduct,
-                CreateGraphics(source, categories));
+                CreateGraphics(source, categories, "FlatConveyorT4"));
 
             prototypes.Add<TransportProto>(transport, false);
             source.SetNextTier(transport, true);
@@ -69,8 +68,7 @@ namespace ExtraTransports.Data
 
             var transport = new TransportProto(
                 TransportsId.Transports.FlatConveyorT5,
-                Proto.CreateStrFromLocalized(TransportsId.Transports.FlatConveyorT5,
-                    ExtraTransportsTexts.FlatConveyorT5Name, ExtraTransportsTexts.FlatConveyorT5Description),
+                new Proto.Str(ExtraTransportsTexts.FlatConveyorT5Name, ExtraTransportsTexts.FlatConveyorT5Description),
                 source.SurfaceRelativeHeight,
                 3.Quantity(),
                 0.58.Tiles(),
@@ -88,7 +86,7 @@ namespace ExtraTransports.Data
                 source.IsBuildable,
                 TransportsCost.FlatConveyorT5.MapToEntityCosts(registrator),
                 source.ConstructionDurationPerProduct,
-                CreateGraphics(source, categories));
+                CreateGraphics(source, categories, "FlatConveyorT5"));
 
             prototypes.Add<TransportProto>(transport, false);
             source.SetNextTier(transport, true);
@@ -105,8 +103,7 @@ namespace ExtraTransports.Data
 
             var transport = new TransportProto(
                 TransportsId.Transports.LooseMaterialConveyorT4,
-                Proto.CreateStrFromLocalized(TransportsId.Transports.LooseMaterialConveyorT4,
-                    ExtraTransportsTexts.LooseConveyorT4Name, ExtraTransportsTexts.LooseConveyorT4Description),
+                new Proto.Str(ExtraTransportsTexts.LooseConveyorT4Name, ExtraTransportsTexts.LooseConveyorT4Description),
                 source.SurfaceRelativeHeight,
                 3.Quantity(),
                 0.58.Tiles(),
@@ -124,7 +121,7 @@ namespace ExtraTransports.Data
                 source.IsBuildable,
                 TransportsCost.LooseMaterialConveyorT4.MapToEntityCosts(registrator),
                 source.ConstructionDurationPerProduct,
-                CreateGraphics(source, categories));
+                CreateGraphics(source, categories, "LooseMaterialConveyorT4"));
 
             prototypes.Add<TransportProto>(transport, false);
             source.SetNextTier(transport, true);
@@ -141,8 +138,7 @@ namespace ExtraTransports.Data
 
             var transport = new TransportProto(
                 TransportsId.Transports.LooseMaterialConveyorT5,
-                Proto.CreateStrFromLocalized(TransportsId.Transports.LooseMaterialConveyorT5,
-                    ExtraTransportsTexts.LooseConveyorT5Name, ExtraTransportsTexts.LooseConveyorT5Description),
+                new Proto.Str(ExtraTransportsTexts.LooseConveyorT5Name, ExtraTransportsTexts.LooseConveyorT5Description),
                 source.SurfaceRelativeHeight,
                 3.Quantity(),
                 0.58.Tiles(),
@@ -160,7 +156,7 @@ namespace ExtraTransports.Data
                 source.IsBuildable,
                 TransportsCost.LooseMaterialConveyorT5.MapToEntityCosts(registrator),
                 source.ConstructionDurationPerProduct,
-                CreateGraphics(source, categories));
+                CreateGraphics(source, categories, "LooseMaterialConveyorT5"));
 
             prototypes.Add<TransportProto>(transport, false);
             source.SetNextTier(transport, true);
@@ -168,7 +164,7 @@ namespace ExtraTransports.Data
 
         private static void RegisterFluidPipeT5(ProtoRegistrator registrator)
         {
-            // 五级管道沿用原版四级管道外观与单产品输送规则。
+            // 五级管道复用四级管道的几何和输送规则，使用独立的绿色标记贴图。
             ProtosDb prototypes = registrator.PrototypesDb;
             TransportProto source = prototypes.GetOrThrow<TransportProto>(Ids.Transports.PipeT4);
             IoPortShapeProto portShape = prototypes.GetOrThrow<IoPortShapeProto>(Ids.IoPortShapes.Pipe);
@@ -177,8 +173,7 @@ namespace ExtraTransports.Data
 
             var transport = new TransportProto(
                 TransportsId.Transports.FluidPipeT5,
-                Proto.CreateStrFromLocalized(TransportsId.Transports.FluidPipeT5,
-                    ExtraTransportsTexts.PipeT5Name, ExtraTransportsTexts.PipeT5Description),
+                new Proto.Str(ExtraTransportsTexts.PipeT5Name, ExtraTransportsTexts.PipeT5Description),
                 source.SurfaceRelativeHeight,
                 3.Quantity(),
                 0.58.Tiles(),
@@ -195,21 +190,21 @@ namespace ExtraTransports.Data
                 source.IsBuildable,
                 TransportsCost.PipeT5.MapToEntityCosts(registrator),
                 source.ConstructionDurationPerProduct,
-                CreateGraphics(source, categories));
+                CreateGraphics(source, categories, "FluidPipeT5"));
 
             prototypes.Add<TransportProto>(transport, false);
             source.SetNextTier(transport, true);
         }
 
         private static TransportProto.Gfx CreateGraphics(TransportProto source,
-            ImmutableArray<ToolbarEntryData> categories)
+            ImmutableArray<ToolbarEntryData> categories, string id)
         {
-            // 仓库未提供 Unity 资源包，复用原版材质并让游戏生成设施图标。
-            // 每个原型分配独立的渲染缓存，避免不同等级共用实例数据。
+            // EarlyInit 注册独立材质和内嵌菜单图标。
+            // 每个原型分配独立的渲染缓存。
             return new TransportProto.Gfx(
                 source.Graphics.CrossSectionLods,
                 source.Graphics.RenderProducts,
-                source.Graphics.MaterialPath,
+                TransportVisuals.MaterialPath(id),
                 source.Graphics.TransportUvLength,
                 source.Graphics.RenderTransportedProducts,
                 // 0.8.8 的声音来自游戏绑定表，此旧版构造参数不再使用。
@@ -222,7 +217,7 @@ namespace ExtraTransports.Data
                 source.Graphics.CrossSectionRadius,
                 source.Graphics.CrossSectionScale,
                 source.Graphics.UsePerProductColoring,
-                Option<string>.None,
+                TransportVisuals.IconPath(id),
                 true,
                 source.Graphics.MaxRenderedLod,
                 new ImmutableArray<ToolbarEntryData>?(categories),
